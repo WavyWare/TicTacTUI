@@ -1,0 +1,19 @@
+{
+  "name": "tictactui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "node dist/Game.js"
+  },
+  "dependencies": {
+    "@types/node": "^24.0.12",
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/prompt-sync": "^4.2.3",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
