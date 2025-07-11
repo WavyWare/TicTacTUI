@@ -1,5 +1,6 @@
 import { Board } from "./Board";
 import {CLI} from "./CLI";
+import colors from "colors";
 
 export class Game {
     board: Board;
@@ -13,15 +14,21 @@ export class Game {
 
     play() {
         let board = this.board;
-        let msg= 'Welcome to TicTacTUI - Terminal-based tic tac toe';
+        let msg= `${'Welcome to TicTacTUI - Terminal-based tic tac toe'.bold}`;
+        let symbol: string = this.round;
         while (!board.checkWin()) {
             this.cli.render(board, msg);
-            const move = this.cli.prompt('Your move (e.g. 1,2): ');
+            if (symbol === 'X') {
+                symbol = `${symbol.green}`
+            } else {
+                symbol = `${symbol.blue}`
+            }
+            const move = this.cli.prompt(`${symbol} move (e.g. 1,2): `);
             msg = this.board.move(this.cli.getCoords(move), this.round);
             if (msg === '') this.round === 'X' ? this.round = 'O' : this.round = 'X';
         }
         this.cli.render(board);
-        console.log(`Game over! ${this.round === 'X' ? 'O' : 'X'} wins!`);
+        console.log(`Game over! ${symbol} wins!`);
     }
 }
 

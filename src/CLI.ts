@@ -1,5 +1,6 @@
 import promptSync from 'prompt-sync';
 import {Board} from "./Board";
+import colors from 'colors'
 
 export class CLI {
     prompt;
@@ -16,20 +17,22 @@ export class CLI {
     render(board: Board, msg: string = '') {
         console.clear();
         if (msg !== '') console.log(msg)
-        console.log('+-----+-----+-----+');
+        console.log('+-----+-----+-----+'.white.bold);
         for (let x = 0; x < board.board.length; x++) {
-            let line = '|';
+            let line = `${'|'.white.bold}`;
             for (let y = 0; y < board.board[x].length; y++) {
                 let cell = '';
                 if (board.board[x][y] === '') {
-                    cell = ` ${x+1},${y+1} `
+                    cell = colors.grey(` ${x+1},${y+1} `)
+                } else if (board.board[x][y] === 'X') {
+                    cell = `  ${board.board[x][y]}  `.green
                 } else {
-                    cell = `  ${board.board[x][y]}  `
+                    cell = `  ${board.board[x][y]}  `.blue;
                 }
-                line += `${cell}|`;
+                line += cell+'|'.white.bold;
             }
             console.log(line);
-            console.log('+-----+-----+-----+');
+            console.log('+-----+-----+-----+'.white.bold);
         }
     }
 

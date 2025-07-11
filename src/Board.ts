@@ -20,7 +20,7 @@ export class Board {
     move(coords: number[], round: string) {
         const [x, y] = coords;
         if (this.board[x][y] !== '') {
-            return 'Invalid move!'
+            return `${'Invalid move!'.red.bold}`
         } else {
             this.board[x][y] = round;
             return ''
